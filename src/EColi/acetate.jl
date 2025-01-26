@@ -136,10 +136,7 @@ for (i, col) in enumerate(eachcol(sens_efm))
 end
 
 
-
-
-# run efm.jl first!
-df = DataFrame(CSV.File("data/EColi/acetate/acetate_pro.csv"))
+df = DataFrame(CSV.File("data/curated_data/EColi/acetate_pro.csv"))
 
 # efm 2 is acetate-producing
 d_lambda_dict = Dict(string(r) => sens_efm[:,i] for (i,r) in enumerate(parameters))
