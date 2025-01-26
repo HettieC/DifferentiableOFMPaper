@@ -13,10 +13,10 @@ optimizer = HiGHS.Optimizer
 gene_zero_tol = 1e-8
 flux_zero_tol = 1e-8
 
-organisms = [String(split(x, ".json")[1]) for x in readdir("data/fungi343species/models") if !occursin("panmodel",x)]
+organisms = [String(split(x, ".json")[1]) for x in readdir("data/data/fungi343species/models") if !occursin("panmodel",x)]
 
 for organism in organisms
-    model = convert(CM.Model, load_model("data/fungi343species/models/$organism.json"))
+    model = convert(CM.Model, load_model("data/data/fungi343species/models/$organism.json"))
     reaction_isozymes = Dict(
         k => Dict(
             "$(k)_$i" => X.Isozyme(
@@ -24,10 +24,10 @@ for organism in organisms
                 d["kcat_forward"],
                 d["kcat_reverse"],
             ) for (i, d) in enumerate(v)
-        ) for (k, v) in JSON.parsefile("data/fungi343species/isozymes/$organism.json")
+        ) for (k, v) in JSON.parsefile("data/data/fungi343species/isozymes/$organism.json")
     )
     gene_product_molar_masses =
-        Dict(x => y for (x, y) in JSON.parsefile("data/fungi343species/molar_mass/$organism.json"))
+        Dict(x => y for (x, y) in JSON.parsefile("data/data/fungi343species/molar_mass/$organism.json"))
     capacity = [("uncategorized", A.genes(model), mass_bound)]
     # open exchange reactions
     for (r, rxn) in model.reactions
@@ -108,5 +108,5 @@ for organism in organisms
     df = DataFrame(sens, :auto);
     rename!(df, string.(parameters));
     insertcols!(df, 1, :vid => vids);
-    CSV.write("data/fungi343species/fixed_EC_sensitivities/$organism.csv", df);
+    CSV.write("data/data/fungi343species/fixed_EC_sensitivities/$organism.csv", df);
 end
