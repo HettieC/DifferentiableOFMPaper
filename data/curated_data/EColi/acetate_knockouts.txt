@@ -1,0 +1,8 @@
+Key for the references used in acetate_knockouts.csv
+
+ref1: DOI 10.1074/jbc.M510016200
+ref2: DOI 10.1007/s10529-006-9182-8
+ref3: https://doi.org/10.1038/sj.jim.7000014
+ref4: https://doi.org/10.1186/s12934-019-1202-1
+ref5: doi:10.1016/j.ymben.2004.02.004
+ref6: https://doi.org/10.1016/j.ymben.2016.05.006
