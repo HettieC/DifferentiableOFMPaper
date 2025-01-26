@@ -10,7 +10,6 @@ using JSON, HiGHS
 using ElementaryFluxModes
 using CairoMakie
 
-
 flux_zero_tol = 1e-6
 gene_zero_tol = 1e-6
 
