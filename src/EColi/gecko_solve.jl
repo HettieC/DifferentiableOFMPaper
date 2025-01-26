@@ -6,7 +6,7 @@ import ConstraintTrees as C
 import AbstractFBCModels as A
 import COBREXA as X
 using JSON, HiGHS
-using JSONFBCModels
+using JSONFBCModels 
 
 flux_zero_tol = 1e-6
 gene_zero_tol = 1e-6
