@@ -29,6 +29,6 @@ Symbolics = "0c5d862f-8b57-4792-8d23-62f2024744c7"
 
 [compat]
 COBREXA = "2"
-ConstraintTrees = "1.9."
+ConstraintTrees = "1.9"
 DifferentiableMetabolism = "0.2"
 ElementaryFluxModes = "1"
