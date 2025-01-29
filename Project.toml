@@ -28,8 +28,7 @@ StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 Symbolics = "0c5d862f-8b57-4792-8d23-62f2024744c7"
 
 [compat]
-COBREXA = "2.6.1"
-ConstraintTrees = "1.9.0"
-DataFrames = "1.7.0"
-DifferentiableMetabolism = "0.2.0"
-ElementaryFluxModes = "0.1.0"
+COBREXA = "2"
+ConstraintTrees = "1.9."
+DifferentiableMetabolism = "0.2"
+ElementaryFluxModes = "1"
