@@ -6,7 +6,6 @@ import AbstractFBCModels.CanonicalModel as CM
 # load pan model to get the subsystems
 
 m = matread("data/data/fungi343species/ssGEMs/panmodel.mat")["panmodel"]
-model = convert(CM.Model, load_model("data/data/fungi343species/ssGEMs/panmodel.mat"));
 reaction_subsystems = Dict(m["rxns"] .=> vec.(m["subSystems"]))
 reaction_subsystems = Dict(x => join([z for z in y], "; ") for (x, y) in reaction_subsystems)
 pathways = Dict(x => y for (x, y) in JSON.parsefile("data/curated_data/kegg_pathways.json"))
