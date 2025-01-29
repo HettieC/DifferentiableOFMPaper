@@ -14,6 +14,7 @@ organisms = [String(split(x, "_PredictionResults.txt")[1]) for x in readdir("dat
 
 # make .mat models into json models, save the isozymes, add fake genes
 for organism in organisms
+    isfile("data/fungi343species/isozymes/$(organism).json") && isfile("data/fungi343species/models/$organism.json") && continue
     model = convert(CM.Model, load_model("data/data/fungi343species/ssGEMs/$organism.mat"));
     df = select!(
         DataFrame(
