@@ -15,6 +15,8 @@ flux_zero_tol = 1e-8
 
 organisms = [String(split(x, ".json")[1]) for x in readdir("data/data/fungi343species/models") if !occursin("panmodel",x)]
 
+!isdir("data/fungi343species/fixed_EC_sensitivities") && mkdir("data/fungi343species/fixed_EC_sensitivities")
+
 for organism in organisms
     model = convert(CM.Model, load_model("data/data/fungi343species/models/$organism.json"))
     reaction_isozymes = Dict(
