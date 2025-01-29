@@ -223,5 +223,3 @@ Legend(
     labelsize = 30
 )
 fig
-
-save("data/plots/acetate.png",fig)

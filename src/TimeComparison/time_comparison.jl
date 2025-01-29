@@ -125,4 +125,3 @@ scatter!(ax,[2,3],[diffmet_ofm[1],finitediff_ofm[1]]./1E9,color=:orange,marker=R
 scatter!(ax,[2,3],[diffmet_ofm[2],finitediff_ofm[2]]./1E9,color=:green,marker=Rect,markersize=20,label="E. coli OFM")
 axislegend(ax,labelsize=25,position=:lt)
 f
-save("data/plots/timing.png",f)

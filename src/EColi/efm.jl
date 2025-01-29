@@ -177,5 +177,3 @@ Legend(
 bracket!(ax, 0, 1.6e-6, findlast(x -> x == 2, data.grp), 1.6e-6, style=:curly, orientation=:down)
 bracket!(ax, findfirst(x -> x == 1, data.grp), 1.6e-6, length(data.grp), 1.6e-6, style=:curly, orientation=:down)
 fig
-
-save("data/plots/ecoli_d_lambda.png", fig)

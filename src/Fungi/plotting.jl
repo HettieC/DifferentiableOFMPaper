@@ -114,6 +114,3 @@ rainclouds!(
 )
 ylims!(-13, 0)
 f
-
-
-save("data/plots/yeasts_subs.png", f)
