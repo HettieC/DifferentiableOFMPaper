@@ -7,10 +7,10 @@ include("utils.jl")
 organisms = [String(split(x, "_PredictionResults.txt")[1]) for x in readdir("data/data/fungi343species/PredcitedKcat343species") if endswith(x, "_PredictionResults.txt") && !occursin("panmodel",x)]
 
 # make data directories 
-mkdir("data/fungi343species")
-mkdir("data/fungi343species/isozymes")
-mkdir("data/fungi343species/models")
-mkdir("data/fungi343species/molar_mass")
+!isdir("data/fungi343species") && mkdir("data/fungi343species")
+!isdir("data/fungi343species/isozymes") && mkdir("data/fungi343species/isozymes")
+!isdir("data/fungi343species/models") && mkdir("data/fungi343species/models")
+!isdir("data/fungi343species/molar_mass") && mkdir("data/fungi343species/molar_mass")
 
 # make .mat models into json models, save the isozymes, add fake genes
 for organism in organisms

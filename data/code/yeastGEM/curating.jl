@@ -11,10 +11,12 @@ import AbstractFBCModels as A
 using DataFrames, CSV, JSONFBCModels
 include("utils.jl")
 #### download like in cobrexa docs
+!isdir("data/yeastGEM") && mkdir("data/yeastGEM")
+
 download_model(
     "https://github.com/SysBioChalmers/yeast-GEM/archive/refs/tags/v9.0.1.zip",
-    "data/data/yeastGEM/yeast-GEM.mat",
-    "7c4643468f18442d78eea81d68343eb7ff814b5eac91c3cbeb67c7b736c5f640"
+    "data/yeastGEM/yeast-GEM.mat",
+    "db65b9df9e7ed98b0806c98be746736f2cf5b08d2eb8794c8790bf4a3b8dddd3"
 )
 
 model = convert(CM.Model,load_model("data/data/yeastGEM/yeast-GEM.mat"))
