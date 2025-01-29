@@ -30,5 +30,6 @@ Symbolics = "0c5d862f-8b57-4792-8d23-62f2024744c7"
 [compat]
 COBREXA = "2.6.1"
 ConstraintTrees = "1.9.0"
+DataFrames = "1.7.0"
 DifferentiableMetabolism = "0.2.0"
 ElementaryFluxModes = "0.1.0"

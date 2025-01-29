@@ -9,7 +9,7 @@ m = matread("data/data/fungi343species/ssGEMs/panmodel.mat")["panmodel"]
 model = convert(CM.Model, load_model("data/data/fungi343species/ssGEMs/panmodel.mat"));
 reaction_subsystems = Dict(m["rxns"] .=> vec.(m["subSystems"]))
 reaction_subsystems = Dict(x => join([z for z in y], "; ") for (x, y) in reaction_subsystems)
-pathways = Dict(x => y for (x, y) in JSON.parsefile("data/fungi343species/database/kegg_pathways.json"))
+pathways = Dict(x => y for (x, y) in JSON.parsefile("data/curated_data/kegg_pathways.json"))
 
 ##### keep reactions having more than one subsystem
 simplified_rxn_subsystems = Dict(r => String[] for (r, v) in reaction_subsystems)
