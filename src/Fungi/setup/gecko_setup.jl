@@ -122,7 +122,7 @@ end
 ## save the gene product molar mass and mass group
 for organism in organisms
     model = convert(CM.Model, load_model("data/fungi343species/models/$organism.json"));
-    gpmm = get_gene_product_molar_mass(organism, model)
+    gpmm = get_gene_product_molar_mass(model,"data/data/fungi343species/Proteinfasta/$organism.fasta")
     avg_mw = sum(values(gpmm)) / length(gpmm)
     for x in [x for (x, y) in model.genes if !haskey(gpmm, x)]
         gpmm[x] = avg_mw
