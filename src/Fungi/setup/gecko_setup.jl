@@ -7,14 +7,14 @@ include("utils.jl")
 organisms = [String(split(x, "_PredictionResults.txt")[1]) for x in readdir("data/data/fungi343species/PredcitedKcat343species") if endswith(x, "_PredictionResults.txt") && !occursin("panmodel",x)]
 
 # make data directories 
-!isdir("data/fungi343species") && mkdir("data/fungi343species")
-!isdir("data/fungi343species/isozymes") && mkdir("data/fungi343species/isozymes")
-!isdir("data/fungi343species/models") && mkdir("data/fungi343species/models")
-!isdir("data/fungi343species/molar_mass") && mkdir("data/fungi343species/molar_mass")
+!isdir("data/data/fungi343species") && mkdir("data/data/fungi343species")
+!isdir("data/data/fungi343species/isozymes") && mkdir("data/data/fungi343species/isozymes")
+!isdir("data/data/fungi343species/models") && mkdir("data/data/fungi343species/models")
+!isdir("data/data/fungi343species/molar_mass") && mkdir("data/data/fungi343species/molar_mass")
 
 # make .mat models into json models, save the isozymes, add fake genes
 for organism in organisms
-    isfile("data/fungi343species/isozymes/$(organism).json") && isfile("data/fungi343species/models/$organism.json") && continue
+    isfile("data/data/fungi343species/isozymes/$(organism).json") && isfile("data/data/fungi343species/models/$organism.json") && continue
     model = convert(CM.Model, load_model("data/data/fungi343species/ssGEMs/$organism.mat"));
     df = select!(
         DataFrame(
@@ -113,21 +113,21 @@ for organism in organisms
         end
     end
 
-    open("data/fungi343species/isozymes/$(organism).json", "w") do io
+    open("data/data/fungi343species/isozymes/$(organism).json", "w") do io
         JSON.print(io, reaction_isozymes)
     end
-    save_model(convert(JSONFBCModels.JSONFBCModel, model), "data/fungi343species/models/$organism.json");
+    save_model(convert(JSONFBCModels.JSONFBCModel, model), "data/data/fungi343species/models/$organism.json");
 end
 
 ## save the gene product molar mass and mass group
 for organism in organisms
-    model = convert(CM.Model, load_model("data/fungi343species/models/$organism.json"));
+    model = convert(CM.Model, load_model("data/data/fungi343species/models/$organism.json"));
     gpmm = get_gene_product_molar_mass(model,"data/data/fungi343species/Proteinfasta/$organism.fasta")
     avg_mw = sum(values(gpmm)) / length(gpmm)
     for x in [x for (x, y) in model.genes if !haskey(gpmm, x)]
         gpmm[x] = avg_mw
     end
-    open("data/fungi343species/molar_mass/$organism.json", "w") do io
+    open("data/data/fungi343species/molar_mass/$organism.json", "w") do io
         JSON.print(io, gpmm)
     end
 end
