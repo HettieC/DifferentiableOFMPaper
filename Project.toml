@@ -1,8 +1,3 @@
-name = "DifferentiableEFMPaper"
-uuid = "602bcf42-e752-43eb-afeb-d533f26665f9"
-authors = ["HettieC <hester.chapman@btinternet.com>"]
-version = "0.1.0"
-
 [deps]
 AbstractFBCModels = "5a4f3dfa-1789-40f8-8221-69268c29937c"
 BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
@@ -26,9 +21,11 @@ RowEchelon = "af85af4c-bcd5-5d23-b03a-a909639aa875"
 SBMLFBCModels = "3e8f9d1a-ffc1-486d-82d6-6c7276635980"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 Symbolics = "0c5d862f-8b57-4792-8d23-62f2024744c7"
+ZipFile = "a5390f91-8eb1-5f08-bee0-b1d1ffed6cea"
 
 [compat]
 COBREXA = "2"
 ConstraintTrees = "1.9"
 DifferentiableMetabolism = "0.2"
 ElementaryFluxModes = "1"
+ZipFile = "0.10.1"
