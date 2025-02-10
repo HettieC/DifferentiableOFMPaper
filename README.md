@@ -1,4 +1,4 @@
-# Differentiable EFMs paper
+# Differentiable OFMs paper
 
 ## Description
 
