@@ -26,6 +26,6 @@ ZipFile = "a5390f91-8eb1-5f08-bee0-b1d1ffed6cea"
 [compat]
 COBREXA = "2"
 ConstraintTrees = "1.9"
-DifferentiableMetabolism = "0.2"
+DifferentiableMetabolism = "0"
 ElementaryFluxModes = "1"
 ZipFile = "0.10.1"
