@@ -4,10 +4,10 @@ import AbstractFBCModels: genes, reactions, stoichiometry
 import AbstractFBCModels as A
 using JSON, CSV, DataFrames
 include("utils.jl")
-model = convert(CM.Model,load_model("data/data/EColi/iML1515.json"))
+model = convert(CM.Model,load_model("data/EColi/iML1515.json"))
 
 pid_bid = Dict()
-open(joinpath("data", "data", "EColi", "e_coli.tab")) do io
+open(joinpath("data", "EColi", "e_coli.tab")) do io
     firstline = true
     for ln in eachline(io)
         firstline && (firstline = false; continue)
@@ -22,7 +22,7 @@ end
 # load protein data
 proteome_data = Dict()
 subcellular_location = Dict{String,Vector{String}}()
-open("data/data/EColi/uniprotkb_e_coli.tsv") do io
+open("data/EColi/uniprotkb_e_coli.tsv") do io
     firstline = true
     for ln in eachline(io)
         firstline && (firstline = false; continue)
@@ -55,7 +55,7 @@ membrane_proteins = [x for (x,y) in subcellular_location if x ∈ genes(model) &
 
 # get complex data
 complex_data = Dict()
-open(joinpath("data", "data", "EColi", "83333.tsv")) do io
+open(joinpath("data", "EColi", "83333.tsv")) do io
     firstline = true
     for ln in eachline(io)
         firstline && (firstline = false; continue)
@@ -89,7 +89,7 @@ end
 #! delete other biomass reaction
 delete!(model.reactions, "BIOMASS_Ec_iML1515_WT_75p37M")
 
-reaction_kcats = JSON.parsefile("data/data/EColi/e_coli_kcats.json")
+reaction_kcats = JSON.parsefile("data/EColi/e_coli_kcats.json")
 gene_product_molar_mass = Dict(
     k => v[1] for (k,v) in proteome_data
 )
@@ -191,7 +191,7 @@ gene_product_mass_group["b1692"] = "other"
 
 save_model(convert(JSONFBCModels.JSONFBCModel,model),"data/curated_data/EColi/processed_files/iML1515_processed.json")
 
-mass_percentage = DataFrame(CSV.File("data/data/EColi/Heinemann/41587_2016_BFnbt3418_MOESM18_ESM_percentage_mass_S14.csv"))
+mass_percentage = DataFrame(CSV.File("data/EColi/41587_2016_BFnbt3418_MOESM18_ESM_percentage_mass_S14.csv"))
 
 filter!(row->!occursin("Standard",row.Subcellular_location) && !occursin("Ratio",row.Subcellular_location),mass_percentage)
 
