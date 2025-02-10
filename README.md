@@ -23,6 +23,10 @@ The file paths to this dataset must be edited to match:
 `~/DifferentiableOFMPaper/data/data/fungi343species/PredcitedKcat343species`, 
 `~/DifferentiableOFMPaper/data/data/fungi343species/Proteinfasta`, 
 
+### E. coli 
+- Download iML1515 from http://bigg.ucsd.edu/models/iML1515
+- Save into the folder `~/DifferentiableOFMPaper/data/EColi`
+
 ## Reproducing figures
 
 ### Table 1
@@ -43,5 +47,5 @@ If only interested in reproducing the figure, run:
 `src/EColi/efm.jl`
 
 ### Fig. 3 
-As in Figure 2, running `data/code/EColi/gecko_setup.jl` is not necessary. To reproduce the figure, run:
+As in Figure 2, running `data/code/EColi/gecko_setup.jl` is not necessary to reproduce the figure, but can be run to curate the model. To reproduce the figure, run:
 `src/EColi/acetate.jl`
