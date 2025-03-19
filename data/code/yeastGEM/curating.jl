@@ -28,7 +28,7 @@ for r in biomass_rxns
 end
 
 # add smiles annotations
-smiles_df = DataFrame(CSV.File("data/data/yeastGEM/databases/smilesDB.tsv",header=false))
+smiles_df = DataFrame(CSV.File("data/yeastGEM/databases/smilesDB.tsv",header=false))
 smiles_dict = Dict(Pair.(smiles_df.Column1,smiles_df.Column2))
 mets_smiles = Dict(x => smiles_dict[y.name] for (x,y) in model.metabolites)
 for (k,v) in mets_smiles
@@ -39,8 +39,8 @@ end
 
 
 ### get smiles/inchi/kegg for metabolites without smiles in the smilesDB 
-bigg_dict_first = CSV.File("data/data/yeastGEM/databases/BiGGmetDictionary.csv",header=false) |> Dict
-bigg_dict_second = CSV.File("data/data/yeastGEM/databases/BiGGmetDictionary_newIDs.csv",header=false) |> Dict
+bigg_dict_first = CSV.File("data/yeastGEM/databases/BiGGmetDictionary.csv",header=false) |> Dict
+bigg_dict_second = CSV.File("data/yeastGEM/databases/BiGGmetDictionary_newIDs.csv",header=false) |> Dict
 bigg_dict = merge(
     Dict("M_$(split(x,"[")[1])" => y for (x,y) in bigg_dict_first),
     Dict("M_$(split(x,"[")[1])" => y for (x,y) in bigg_dict_second)
@@ -117,7 +117,7 @@ for (k,v) in mets_smiles
     end
 end
 
-AA_df = DataFrame(CSV.File("data/data/yeastGEM/databases/swissprot.tsv"))
+AA_df = DataFrame(CSV.File("data/yeastGEM/databases/swissprot.tsv"))
 
 df = DataFrame(Reaction=String[],Gene=String[],enzyme=String[],substrates=String[],products=String[])
 ##### make a dataframe of the AA sequence, substrates and products of each reaction_gene_association
