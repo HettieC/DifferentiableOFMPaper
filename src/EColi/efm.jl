@@ -160,7 +160,7 @@ barplot!(
     data.height,
     color=colors[data.grp]
 )
-labels = ["Respirofermentative OFM", "Respiratitive OFM"]
+labels = ["Respirofermentative OFM", "Respiratory OFM"]
 elements = [PolyElement(polycolor=colors[2]), PolyElement(polycolor=colors[1])]
 Legend(
     fig[1, 1],
