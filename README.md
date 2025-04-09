@@ -31,8 +31,12 @@ The file paths to this dataset must be edited to match:
 
 ### Table 1
 Raw timings calculated on an AMD Ryzen 9 5950X with 32 GB main memory are saved in `data/results/timing.csv`. 
-To calculate timings on one's own setup, run the file:
+To calculate timings on one's own setup, first run the files in the folder `data/code/yeastGEM` in the order:
+1. `data/code/yeastGEM/curating.jl`
+2. `data/code/yeastGEM/gecko_setup.jl`
+Followed by running the file:
 `src/TimeComparison/time_comparison.jl`
+We took an average of 10 runs to report in the paper, therefore this code is very slow.
 
 ### Fig. 1
 Run the .jl files in the following order:
