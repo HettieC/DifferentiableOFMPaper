@@ -20,20 +20,20 @@ gene_zero_tol = 1e-9
 flux_zero_tol = 1e-9
 
 models = [
-    "data/yeastGEM/yeastGEMcurated.json",
-    "data/EColi/processed_files/iML1515_processed.json"
+    "data/curated_data/yeastGEM/yeastGEMcurated.json",
+    "data/curated_data/EColi/processed_files/iML1515_processed.json"
 ]
 isozymes = [
-    "data/yeastGEM/curated/reaction_isozymes.json",
-    "data/EColi/processed_files/isozymes.json"
+    "data/curated_data/yeastGEM/reaction_isozymes.json",
+    "data/curated_data/EColi/processed_files/isozymes.json"
 ]
 masses = [
-    "data/yeastGEM/curated/gene_product_molar_mass.json",
-    "data/EColi/processed_files/gene_product_molar_mass.json"
+    "data/curated_data/yeastGEM/gene_product_molar_mass.json",
+    "data/curated_data/EColi/processed_files/gene_product_molar_mass.json"
 ]
 capacities = [
-    "data/yeastGEM/curated/capacity.json",
-    "data/EColi/processed_files/capacity.json"
+    "data/curated_data/yeastGEM/capacity.json",
+    "data/curated_data/EColi/processed_files/capacity.json"
 ]
 atps = [
     "r_4046",
