@@ -85,17 +85,25 @@ xlabs = sens_keys[order]
 colors = (ColorSchemes.rainbow)[[1, 2, 4, 6, 8, 10, 12, 14, 15, 17]]
 colors = vcat([repeat([color], length(organisms)) for color in colors]...)
 # make the plot
-f = Figure(; size=(1000, 700), backgroundcolor=:transparent);
+
+# these are relative to 1 CSS px
+inch = 96
+pt = 4/3
+cm = inch / 2.54
+
+set_theme!(figure_padding=3)
+
+
+f = Figure(;size = (7cm, 4.9cm))
 ax = Axis(
     f[1, 1],
     backgroundcolor=:transparent,
     xlabel="Subsystem",
-    ylabel="Mean sensitivity of biomass to subsystem enzymes",
-    xlabelsize=35,
-    ylabelsize=35,
-    titlesize=30,
-    xticklabelsize=25,
-    yticklabelsize=25,
+    ylabel="Mean sensitivity of biomass to\nsubsystem enzymes",
+    xlabelsize=6pt,
+    ylabelsize=6pt,
+    xticklabelsize=5pt,
+    yticklabelsize=5pt,
     xticks=(1:length(subsystem_sens), xlabs),
     ytickformat=vals -> [rich("10", superscript("$(trunc(Int,v))")) for v in vals],
     xticklabelrotation=pi / 3,
@@ -109,7 +117,12 @@ rainclouds!(
     gap=0.05,
     plot_boxplots=false,
     show_median=true,
-    color=colors
+    color=colors,
+    markersize=1,
 )
-ylims!(-13, 0)
+ylims!(-12, 0)
+p = ax.scene.plots[1]
+p.plots[1].medianlinewidth = 0.5
+
 f
+save("yeasts_subsystems.png",f,px_per_unit = 1200/inch)

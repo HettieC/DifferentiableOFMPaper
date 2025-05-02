@@ -153,7 +153,7 @@ for (i,r) in enumerate(eachrow(df)[2:end])
     end
 end
 
-sz = log.(abs.(data.sens))*4
+sz = log.(abs.(data.sens))
 
 colors = []
 strokes = []
@@ -175,21 +175,26 @@ for (i,(a,s)) in enumerate(zip(data.acetate,data.sens))
     end
 end
 
-fig = Figure(;size=(1000,800),backgroundcolor=:transparent);
+# ensure plot is correct size
+inch = 96
+pt = 4/3
+cm = inch / 2.54
+
+set_theme!(figure_padding=2)
+
+fig = Figure(; size=(7cm, 5cm))#, backgroundcolor=:transparent)
 ax1 = Axis(
     fig[1,1],
     xlabel = "Knockout gene",
     ylabel = "Acetate production rate\n relative to wildtype",
     xticks = (1:length(df.knockout)-1,df.knockout[2:end]),
-    ylabelsize = 35,
-    xlabelsize = 35,
-    xticklabelsize = 30,
-    yticklabelsize = 25,
-    titlesize = 30,
+    xlabelsize=6pt,
+    ylabelsize=6pt,
+    xticklabelsize=5pt,
+    yticklabelsize=5pt,
     xticklabelrotation = π/3,
     ygridvisible=false,
 )
-
 scatter!(
     ax1,
     data.x,
@@ -198,17 +203,14 @@ scatter!(
     markersize = sz,
     color = colors,
     strokecolor = strokes,
-    strokewidth=2,
+    strokewidth=1,
 )
-
-
-hlines!(1.0,color=:black,linewidth=3)
+hlines!(1.0,color=:black,linewidth=1)
 Legend(
     fig[1,1],
-    axis = ax1,
     [
-        MarkerElement(color=ColorSchemes.PiYG[9],marker=:circle,markersize=25,strokecolor=ColorSchemes.PiYG[10],strokewidth=2),
-        MarkerElement(color=ColorSchemes.PiYG[2],marker=:circle,markersize=25,strokecolor=ColorSchemes.PiYG[1],strokewidth=2),
+        MarkerElement(color=ColorSchemes.PiYG[9],marker=:circle,markersize=12,strokecolor=ColorSchemes.PiYG[10],strokewidth=1),
+        MarkerElement(color=ColorSchemes.PiYG[2],marker=:circle,markersize=12,strokecolor=ColorSchemes.PiYG[1],strokewidth=1),
 
     ],
     [
@@ -217,9 +219,12 @@ Legend(
     ],
     tellwidth = false,
     tellheight = false,
-    margin = (30,30,30,60),
+    margin = (0,0,0,0),
     halign = :right,
     valign = :top,
-    labelsize = 30
+    labelsize = 5pt,
+    framevisible = true,
+    framewidth = 0.1
 )
 fig
+save("ecoli_acetate.png", fig, px_per_unit = 1200/inch)

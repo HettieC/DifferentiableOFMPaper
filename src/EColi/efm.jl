@@ -135,7 +135,14 @@ end
 order = sortperm(scaled_sens[1, :])
 colors = Makie.wong_colors()[5:6]
 
-fig = Figure(; size=(1000, 800), backgroundcolor=:transparent)
+# ensure plot is correct size
+inch = 96
+pt = 4/3
+cm = inch / 2.54
+
+set_theme!(figure_padding=2)
+
+fig = Figure(; size=(7cm, 5cm))#, backgroundcolor=:transparent)
 data = (
     x=1:length(parameters),
     height=[c[1] > 0 ? c[1] : c[2] for c in eachcol(scaled_sens[:, order])],
@@ -143,12 +150,11 @@ data = (
 )
 ax = Axis(
     fig[1, 1],
-    #xlabel = "Parameter",
     ylabel="OFM control coefficient",
-    xlabelsize=25,
-    xticklabelsize=30,
-    ylabelsize=30,
-    yticklabelsize=20,
+    xlabelsize=6pt,
+    ylabelsize=6pt,
+    xticklabelsize=5pt,
+    yticklabelsize=5pt,
     xgridvisible=false,
     ygridvisible=false,
     xticks=([163, 360], ["Cytosolic\nEnzymes", "Membrane\nEnzymes"]),
@@ -161,19 +167,20 @@ barplot!(
     color=colors[data.grp]
 )
 labels = ["Respirofermentative OFM", "Respiratory OFM"]
-elements = [PolyElement(polycolor=colors[2]), PolyElement(polycolor=colors[1])]
+elements = [MarkerElement(marker=:rect,color=colors[2],markersize=10), MarkerElement(marker=:rect,color=colors[1],markersize=10)]
 Legend(
     fig[1, 1],
     elements,
     labels,
-    position=:ct,
     tellheight=false,
     tellwidth=false,
-    halign=:center,
-    valign=:top,
-    margin=(0, 80, 80, 80),
-    labelsize=30,
+    labelsize = 5pt,
+    halign = :center,
+    valign = :top,
+    margin = (20,0,0,0),
+    framevisible = false
 )
-bracket!(ax, 0, 1.6e-6, findlast(x -> x == 2, data.grp), 1.6e-6, style=:curly, orientation=:down)
-bracket!(ax, findfirst(x -> x == 1, data.grp), 1.6e-6, length(data.grp), 1.6e-6, style=:curly, orientation=:down)
+bracket!(ax, 0, 1.6e-6, findlast(x -> x == 2, data.grp), 1.6e-6, style=:curly, orientation=:down,linewidth=0.5, width = 10)
+bracket!(ax, findfirst(x -> x == 1, data.grp), 1.6e-6, length(data.grp), 1.6e-6, style=:curly, orientation=:down, linewidth=0.5,width=10)
 fig
+save("ecoli_ofm.png", fig, px_per_unit = 1200/inch)
